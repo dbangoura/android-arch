@@ -10,6 +10,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import fr.soat.androidarchi.R;
 import fr.soat.androidarchi.data.model.SimplifiedPeople;
 
@@ -60,13 +62,12 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
     }
 
     class PeopleListViewHolder extends RecyclerView.ViewHolder {
-        private final TextView mId;
-        private final TextView mName;
+        @BindView(R.id.people_item_id) TextView mId;
+        @BindView(R.id.people_item_name) TextView mName;
 
         public PeopleListViewHolder(View itemView) {
             super(itemView);
-            mId = itemView.findViewById(R.id.people_item_id);
-            mName = itemView.findViewById(R.id.people_item_name);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

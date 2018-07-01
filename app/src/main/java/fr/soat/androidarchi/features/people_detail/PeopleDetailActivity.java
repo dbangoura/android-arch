@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import fr.soat.androidarchi.PeopleApplication;
 import fr.soat.androidarchi.R;
 import fr.soat.androidarchi.data.model.People;
@@ -20,13 +22,13 @@ public class PeopleDetailActivity extends BaseActivity implements PeopleDetailCo
     @Inject
     public PeopleDetailContract.Presenter presenter;
 
-    private TextView mNameTextView;
-    private TextView mHeightTextView;
-    private TextView mMassTextView;
-    private TextView mHairColorTextView;
-    private TextView mSkinColorTextView;
-    private TextView mEyeColorTextView;
-    private TextView mGenderTextView;
+    @BindView(R.id.people_name) TextView mNameTextView;
+    @BindView(R.id.people_height) TextView mHeightTextView;
+    @BindView(R.id.people_mass) TextView mMassTextView;
+    @BindView(R.id.people_haircolor) TextView mHairColorTextView;
+    @BindView(R.id.people_skincolor) TextView mSkinColorTextView;
+    @BindView(R.id.people_eyescolor) TextView mEyeColorTextView;
+    @BindView(R.id.people_gender) TextView mGenderTextView;
 
     private String mPeopleName;
     private int mPeopleId;
@@ -48,13 +50,7 @@ public class PeopleDetailActivity extends BaseActivity implements PeopleDetailCo
                 .build()
                 .inject(this);
 
-        mNameTextView = findViewById(R.id.people_name);
-        mHeightTextView = findViewById(R.id.people_height);
-        mMassTextView = findViewById(R.id.people_mass);
-        mHairColorTextView = findViewById(R.id.people_haircolor);
-        mSkinColorTextView = findViewById(R.id.people_skincolor);
-        mEyeColorTextView = findViewById(R.id.people_eyescolor);
-        mGenderTextView = findViewById(R.id.people_gender);
+        ButterKnife.bind(this);
 
         mNameTextView.setText(mPeopleName);
     }
