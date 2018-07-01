@@ -8,15 +8,21 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import fr.soat.androidarchi.PeopleApplication;
 import fr.soat.androidarchi.R;
 import fr.soat.androidarchi.data.model.SimplifiedPeople;
+import fr.soat.androidarchi.di.components.DaggerPeopleListComponent;
+import fr.soat.androidarchi.di.modules.PeopleListModule;
 import fr.soat.androidarchi.features.base.BaseActivity;
 import fr.soat.androidarchi.features.people_detail.PeopleDetailActivity;
 import fr.soat.androidarchi.utils.Constants;
 
 public class PeopleListActivity extends BaseActivity implements PeopleListContract.View, PeopleItemCallback {
 
-    private PeopleListContract.Presenter presenter;
+    @Inject
+    public PeopleListContract.Presenter presenter;
 
     private RecyclerView mLiist;
     private PeopleListAdapter mAdapter;
@@ -26,7 +32,11 @@ public class PeopleListActivity extends BaseActivity implements PeopleListContra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_people_list);
 
-        presenter = new PeopleListPresenter();
+        DaggerPeopleListComponent.builder()
+                .appComponent(((PeopleApplication) getApplication()).getmAppComponent())
+                .peopleListModule(new PeopleListModule())
+                .build()
+                .inject(this);
 
         mLiist = findViewById(R.id.people_list);
         mLiist.setLayoutManager(new LinearLayoutManager(this));

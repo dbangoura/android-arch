@@ -1,5 +1,7 @@
 package fr.soat.androidarchi.features.people_list;
 
+import javax.inject.Inject;
+
 import fr.soat.androidarchi.data.model.PeopleListResult;
 import fr.soat.androidarchi.data.repository.PeopleRepository;
 import fr.soat.androidarchi.features.base.BaseInteractor;
@@ -9,6 +11,7 @@ import retrofit2.Response;
 
 public class PeopleListInteractor extends BaseInteractor implements PeopleListContract.Interactor {
 
+    @Inject
     public PeopleListInteractor(PeopleRepository peopleRepository) {
         super(peopleRepository);
     }
