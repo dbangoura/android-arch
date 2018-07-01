@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import fr.soat.androidarchi.PeopleApplication;
 import fr.soat.androidarchi.R;
 import fr.soat.androidarchi.data.model.People;
+import fr.soat.androidarchi.di.components.DaggerPeopleDetailComponent;
+import fr.soat.androidarchi.di.modules.PeopleDetailModule;
 import fr.soat.androidarchi.features.base.BaseActivity;
 import fr.soat.androidarchi.utils.Constants;
 
 public class PeopleDetailActivity extends BaseActivity implements PeopleDetailContract.View {
 
-    PeopleDetailContract.Presenter presenter;
+    @Inject
+    public PeopleDetailContract.Presenter presenter;
 
     private TextView mNameTextView;
     private TextView mHeightTextView;
@@ -36,7 +42,11 @@ public class PeopleDetailActivity extends BaseActivity implements PeopleDetailCo
             mPeopleId = intent.getIntExtra(Constants.PEOPLE_ID,0);
         }
 
-        presenter = new PeopleDetailPresenter();
+        DaggerPeopleDetailComponent.builder()
+                .appComponent(((PeopleApplication) getApplication()).getmAppComponent())
+                .peopleDetailModule(new PeopleDetailModule())
+                .build()
+                .inject(this);
 
         mNameTextView = findViewById(R.id.people_name);
         mHeightTextView = findViewById(R.id.people_height);

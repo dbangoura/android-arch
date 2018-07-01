@@ -6,16 +6,16 @@ import fr.soat.androidarchi.features.base.BaseView;
 
 public class PeopleDetailContract {
 
-    interface View extends BaseView {
+    public interface View extends BaseView {
         void updatePeopleDetail(People people);
         void displayErrorMessage();
     }
 
-    interface Presenter extends BasePresenter<View> {
+    public interface Presenter extends BasePresenter<View> {
         void getPeopleDetail(int peopleId);
     }
 
-    interface Interactor {
+    public interface Interactor {
         void getPeopleWithId(int id, GetPeopleDetailCallback callback);
         interface GetPeopleDetailCallback {
             void onPeopleDetailSuccess(People people);

@@ -1,5 +1,7 @@
 package fr.soat.androidarchi.features.people_detail;
 
+import javax.inject.Inject;
+
 import fr.soat.androidarchi.data.model.People;
 import fr.soat.androidarchi.data.repository.PeopleRepository;
 import fr.soat.androidarchi.features.base.BaseInteractor;
@@ -9,6 +11,7 @@ import retrofit2.Response;
 
 public class PeopleDetailInteractor extends BaseInteractor implements PeopleDetailContract.Interactor {
 
+    @Inject
     public PeopleDetailInteractor(PeopleRepository peopleRepository) {
         super(peopleRepository);
     }

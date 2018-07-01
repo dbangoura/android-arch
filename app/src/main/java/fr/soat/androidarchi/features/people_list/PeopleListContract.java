@@ -9,16 +9,16 @@ import fr.soat.androidarchi.features.base.BaseView;
 
 public interface PeopleListContract {
 
-    interface View extends BaseView {
+    public interface View extends BaseView {
         void updatePeopleList(List<SimplifiedPeople> peopleList);
         void displayErrorMessage();
     }
 
-    interface Presenter extends BasePresenter<View> {
+    public interface Presenter extends BasePresenter<View> {
         void getPeopleForPage(int page);
     }
 
-    interface Interactor {
+    public interface Interactor {
         void getPeopleAtPage(int page, PeopleListCallback callback);
 
         interface PeopleListCallback {

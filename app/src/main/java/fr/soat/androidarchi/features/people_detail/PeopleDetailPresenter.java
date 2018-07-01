@@ -1,19 +1,15 @@
 package fr.soat.androidarchi.features.people_detail;
 
+import javax.inject.Inject;
+
 import fr.soat.androidarchi.data.model.People;
-import fr.soat.androidarchi.data.repository.PeopleRepository;
-import fr.soat.androidarchi.data.repository.PeopleRepositoryImpl;
 import fr.soat.androidarchi.features.base.BasePresenterImpl;
 
 public class PeopleDetailPresenter extends BasePresenterImpl<PeopleDetailContract.View> implements PeopleDetailContract.Presenter, PeopleDetailContract.Interactor.GetPeopleDetailCallback {
 
     PeopleDetailContract.Interactor interactor;
 
-    public PeopleDetailPresenter() {
-        PeopleRepository peopleRepository = new PeopleRepositoryImpl();
-        interactor = new PeopleDetailInteractor(peopleRepository);
-    }
-
+   @Inject
     public PeopleDetailPresenter(PeopleDetailContract.Interactor interactor) {
         this.interactor = interactor;
     }
