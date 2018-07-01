@@ -13,7 +13,7 @@ import fr.soat.androidarchi.features.base.BaseActivity;
 
 public class PeopleListActivity extends BaseActivity implements PeopleListContract.View {
 
-    PeopleListContract.Presenter presenter;
+    private PeopleListContract.Presenter presenter;
 
     private RecyclerView mLiist;
     private PeopleListAdapter mAdapter;
