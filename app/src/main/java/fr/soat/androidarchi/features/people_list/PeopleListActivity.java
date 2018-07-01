@@ -1,5 +1,6 @@
 package fr.soat.androidarchi.features.people_list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +11,10 @@ import java.util.List;
 import fr.soat.androidarchi.R;
 import fr.soat.androidarchi.data.model.SimplifiedPeople;
 import fr.soat.androidarchi.features.base.BaseActivity;
+import fr.soat.androidarchi.features.people_detail.PeopleDetailActivity;
+import fr.soat.androidarchi.utils.Constants;
 
-public class PeopleListActivity extends BaseActivity implements PeopleListContract.View {
+public class PeopleListActivity extends BaseActivity implements PeopleListContract.View, PeopleItemCallback {
 
     private PeopleListContract.Presenter presenter;
 
@@ -28,7 +31,7 @@ public class PeopleListActivity extends BaseActivity implements PeopleListContra
         mLiist = findViewById(R.id.people_list);
         mLiist.setLayoutManager(new LinearLayoutManager(this));
 
-        mAdapter = new PeopleListAdapter();
+        mAdapter = new PeopleListAdapter(this);
         mLiist.setAdapter(mAdapter);
 
     }
@@ -54,5 +57,13 @@ public class PeopleListActivity extends BaseActivity implements PeopleListContra
     @Override
     public void displayErrorMessage() {
         Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPeopleSelected(String name, int peopleId) {
+        Intent intent = new Intent(this, PeopleDetailActivity.class);
+        intent.putExtra(Constants.PEOPLE_NAME, name);
+        intent.putExtra(Constants.PEOPLE_ID, peopleId);
+        startActivity(intent);
     }
 }

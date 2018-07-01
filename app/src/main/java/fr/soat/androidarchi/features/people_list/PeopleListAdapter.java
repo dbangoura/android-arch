@@ -17,6 +17,12 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
 
     private List<SimplifiedPeople> items = new ArrayList<SimplifiedPeople>();
 
+    private PeopleItemCallback listener;
+
+    public PeopleListAdapter(PeopleItemCallback listener) {
+        this.listener = listener;
+    }
+
     public void refresh(List<SimplifiedPeople> items) {
         this.items.clear();
         this.items.addAll(items);
@@ -33,8 +39,19 @@ public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.Pe
 
     @Override
     public void onBindViewHolder(@NonNull PeopleListViewHolder holder, int position) {
-        holder.mId.setText("" + items.get(position).getId());
-        holder.mName.setText(items.get(position).getName());
+
+        final String peopleName  = items.get(position).getName();
+        final int peopleId  = items.get(position).getId();
+
+        holder.mId.setText("" + peopleId);
+        holder.mName.setText(peopleName);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onPeopleSelected(peopleName, peopleId);
+            }
+        });
     }
 
     @Override
