@@ -3,6 +3,7 @@ package fr.soat.androidarchi.data.model;
 import java.util.List;
 
 public class PeopleListResult {
+
     private String count;
     private List<SimplifiedPeople> results;
 

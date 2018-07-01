@@ -18,7 +18,7 @@ public class PeopleListInteractor extends BaseInteractor implements PeopleListCo
         getPeopleRepository().getPeopleAtPage(page, new Callback<PeopleListResult>() {
             @Override
             public void onResponse(Call<PeopleListResult> call, Response<PeopleListResult> response) {
-                if (response != null && !response.isSuccessful() && response.errorBody() != null) {
+                if (response == null || (!response.isSuccessful() && response.errorBody() != null)) {
                     callback.onError();
                 } else {
                     callback.onPeopleListSuccess(response.body());
