@@ -10,11 +10,6 @@ import android.view.WindowManager;
 
 import fr.soat.androidarchi.R;
 
-
-/**
- * Created by renaud on 3/10/16.
- */
-
 public class ProgressDialogFragment extends DialogFragment {
 
     public static final String TAG = "ProgressDialogFragment";

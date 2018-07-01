@@ -15,7 +15,7 @@ import fr.soat.androidarchi.data.model.SimplifiedPeople;
 
 public class PeopleListAdapter extends RecyclerView.Adapter<PeopleListAdapter.PeopleListViewHolder> {
 
-    List<SimplifiedPeople> items = new ArrayList<SimplifiedPeople>();
+    private List<SimplifiedPeople> items = new ArrayList<SimplifiedPeople>();
 
     public void refresh(List<SimplifiedPeople> items) {
         this.items.clear();
