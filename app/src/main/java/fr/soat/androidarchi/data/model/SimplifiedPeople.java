@@ -15,7 +15,7 @@ public class SimplifiedPeople {
         return name;
     }
 
-    public void setName(String peopleName) {
+    public void setName(String name) {
         this.name = name;
     }
 
