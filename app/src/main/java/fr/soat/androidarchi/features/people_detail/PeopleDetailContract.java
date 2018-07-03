@@ -4,7 +4,7 @@ import fr.soat.androidarchi.data.model.People;
 import fr.soat.androidarchi.features.base.BasePresenter;
 import fr.soat.androidarchi.features.base.BaseView;
 
-public class PeopleDetailContract {
+public interface PeopleDetailContract {
 
     interface View extends BaseView {
         void updatePeopleDetail(People people);
